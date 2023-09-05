@@ -1,27 +1,40 @@
-const numbers = [1, 2, 3, 4, 5];
-numbers[0] = 10;
-numbers[2] = 30;
-console.log(numbers);
+let numbers = [3, -1, 9, -12, -18];
+function sortAbsoluteNumbers(numeros) {
+  let numabs = [];
+  for (let i of numeros) {
+    const numero = Math.abs(i);
+    numabs.push(numero);
+  }
+  const order = numabs.sort(function (a, b) {
+    return a - b;
+  });
+  return order;
+}
+console.log(sortAbsoluteNumbers(numbers));
 
-//Lo que imprime es una lista de los numeros del 1 al 5 en donde el numero 1 fue reemplazado por el 10
-//y el numero 3 fue reemplazado por el 30
+/**/
 
-let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-function sumarPares(numeros) {
-  let suma = 0;
-  for (let i = 0; i < numbers.length; i++) {
-    if (numbers[i] % 2 == 0) {
-      suma = suma + numeros[i];
+let words = [
+  "hola",
+  "tres",
+  "uno",
+  "Universidad",
+  "de",
+  "Buenos Aires",
+  "pepito",
+  "celular",
+];
+let word = "pepito";
+
+function buscaPalabras(words, word) {
+  //const palabras = words.filter(length());
+  const palabra = words.indexOf(word);
+  let letras = [];
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > palabra) {
+      letras.push(words[i]);
     }
   }
-  console.log(suma);
+  console.log(letras);
 }
-
-sumarPares(numbers);
-
-let palabras = ["juega", "casa", "mesa"];
-function terminanEnA(words) {
-  const todosTerminanEnA = words.every((word) => word.endswith("a"));
-  console.log(todosTerminanEnA);
-}
-terminanEnA(palabras);
+buscaPalabras(words, word);
