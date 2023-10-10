@@ -1,10 +1,15 @@
-import { Header } from "./Header/Header";
+import { Characters } from "./components/characters/Characters";
+import "./app.css";
 
 function App() {
   return (
     <>
-      <Header />
-      hola mundo
+      <div className="encabezado">
+        <h1>The Rick and Morty API</h1>
+      </div>
+      <div className="grilla">
+        <Characters />
+      </div>
     </>
   );
 }
