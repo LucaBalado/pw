@@ -34,7 +34,7 @@ export const Characters = () => {
             <p className="planeta">{item.origin.name}</p>
             <h4>Last known location:</h4>
             <p className="localizacion">{item.location.name}</p>
-            <h4>First seen in:</h4>
+            <h4>Episode:</h4>
             <p className="firstSeen">-------------</p>
           </div>
         </div>
