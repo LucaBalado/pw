@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useState } from "react";
+import { useCharacter } from "../../hooks/useCharacter";
 
 export const Characters = () => {
   //hooks(ganchos) -> sirven para manipular los datos
@@ -13,11 +15,34 @@ export const Characters = () => {
 
   const [characters, setCharacters] = useState([]);
 
+  const { getEpisodeFromCharacter, episodios } = useCharacter();
+  //desestructuracion
+  // obtener de los datos que tengamos lo que necesitemos
+
   useState(() => {
     fetch("https://rickandmortyapi.com/api/character")
       .then((response) => response.json())
       .then((data) => setCharacters(data.results));
   }, []);
+
+  const array = [];
+
+  function myFunction(episodios) {
+    episodios.map((item) => {
+      const number = item.slice(40);
+      array.push(number);
+    });
+    getEpisodeFromCharacter(array);
+  }
+
+  useEffect(() => {
+    console.log(episodios);
+    if (episodios.length > 1) {
+      episodios.map((episodio) => console.log(episodio.name));
+    } else {
+      console.log(episodios.name);
+    }
+  }, [episodios]);
 
   //llaves dentro del return para poder meter codigo js
   return (
@@ -34,7 +59,9 @@ export const Characters = () => {
             <p className="planeta">{item.origin.name}</p>
             <h4>Last known location:</h4>
             <p className="localizacion">{item.location.name}</p>
-            <h4>Episode:</h4>
+            <h4 id="capitulo" onClick={() => myFunction(item.episode)}>
+              Episode:
+            </h4>
             <p className="firstSeen">-------------</p>
           </div>
         </div>
